@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'kranek.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kranek', # It might be all caps KRANEK
+        'NAME': 'kranek'
     }
 }
 
