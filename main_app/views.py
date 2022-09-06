@@ -5,10 +5,12 @@ from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 # Login and create a user
+# from django.views import generic
+# EditProfilePageView, AddProfilePageView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import Deck, Flashcard, Quiz, Question
-from .forms import QuizForm, QuestionForm
+from .forms import QuestionForm
 
 
 import uuid
@@ -17,8 +19,6 @@ import boto3
 # This is to authorize our class based views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-
-# from .models import Quiz, Question, Flashcard, Card, Photo
 
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 # Make a kranek bucket so we can import photos (not set up yet)
@@ -53,8 +53,19 @@ def signup(request):
 
 #========================================== Create a user profile after sign-up ======================================================#
 
+# class AddProfilePageView(generic, CreateView):
+#     form_class = AddProfilePageView
+#     template_name = 'registration/add_profile.html'
+#     success_url: redirect('home')
 
-# class CreateProfilePageView(CreateView):
+
+# class EditProfilePageView(generic.UpdateView):
+#     form_class = EditProfilePageView
+#     template_name = 'registration/edit_profile.html'
+#     success_url: redirect('home')
+
+#     def get_object(self):
+#         return self.request.user
 
 
 # class EditProfilePageView(generic.UpdateView):
@@ -78,7 +89,6 @@ def about(request):
     return render(request, 'about.html')
 
 #============================================ My flashcard view ====================================================#
-
 
 @login_required
 # Add new view
@@ -136,78 +146,42 @@ class FlashcardUpdate(UpdateView):
 class FlashcardDelete(DeleteView):
     model = Flashcard
     success_url = '/flashcards/'
-
+    
 #========================================== My quizzes view ======================================================#
 
-
-@login_required
-def add_quiz(request, profile_id):
-    form = QuizForm(request.POST)
-    if form.is_valid():
-        new_quiz = form.save(commit=False)
-        new_quiz.profile_id = profile_id
-        new_quiz.save()
-    return redirect('detail', profile_id=profile_id)
-
-
-@login_required
-def quiz_detail(request, quiz_id):
-    quiz = Quiz.objects.get(id=quiz_id)
-    quiz_form = QuizForm()
-    questions = Question.objects.filter(quiz=quiz)
-    return render(request, 'quiz/detail.html', {
-        'quiz': quiz,
-        'quiz_form': quiz_form,
-        'questions': questions,
-    })
-
-
-@login_required
-def quizUpdate(request, UpdateView):
+class QuizCreate(LoginRequiredMixin, CreateView):
     model = Quiz
     fields = ['title']
-# Use this if above doesnt work
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
-def quiz_update(request, profile_id):
-    form = QuizForm(request.POST)
-    if form.is_valid():
-        new_quiz = form.save(commit=False)
-        new_quiz.profile_id = profile_id
-        new_quiz.save()
-    return redirect('detail', profile_id=profile_id)
+class QuizUpdate(LoginRequiredMixin, UpdateView):
+    model = Quiz
+    fields = '__all__'
 
 
-@login_required
-def quizDelete(request, DeleteView):
+class QuizDelete(LoginRequiredMixin, DeleteView):
     model = Quiz
     success_url = '/quiz/'
 
 
 @login_required
-def add_question(request, quiz_id,):
-    form = QuestionForm(request.Post)
-    if form.is_valid():
-        new_question = form.save(commit=False)
-        new_question.quiz_id = quiz_id
-        new_question.save()
-    return redirect('details', quiz_id=quiz_id)
-# Use this if above doesnt work
-
-
-def add_question(request, quiz_id, question_id):
-    Quiz.objects.get(id=quiz_id).question.add(question_id)
-    return redirect('detail', quiz_id=quiz_id)
+def quiz_index(request):
+    quiz = quiz.objects.all()
+    return render(request, 'quiz/index.html', {'quiz': quiz})
 
 
 @login_required
-def remove_question(request, quiz_id, question_id):
-    Quiz.objects.get(id+quiz_id).question.remove(question_id)
-    return redirect('detail', quiz_id=quiz_id)
+def quiz_detail(request, quiz_id):
+    quiz = Quiz.objects.get(id=quiz_id)
+    return render(request, 'quiz/detail.html', {'quiz: quiz'})
 
 
 @login_required
-def question_update(request, UpdateView, quiz_id):
+def add_question(request, quiz_id):
     form = QuestionForm(request.POST)
     if form.is_valid():
         new_question = form.save(commit=False)
@@ -217,29 +191,57 @@ def question_update(request, UpdateView, quiz_id):
 
 
 @login_required
-def question_delete(request, DeleteView, quiz_id):
-    form = QuestionForm(request.Delete)
-    if form.is_valid():
-        new_question = form.save(commit=False)
-        new_question.quiz_id = quiz_id
-        new_question.remove()
+def assoc_question(request, quiz_id, question_id):
+    Quiz.objects.get(id=quiz_id).question.add(question_id)
     return redirect('detail', quiz_id=quiz_id)
+
+
+@login_required
+def unassoc_question(request, quiz_id, question_id):
+    Quiz.objects.get(id=quiz_id).question.remove(question_id)
+    return redirect('detail', quiz_id=quiz_id)
+
+
+class QuestionList(LoginRequiredMixin, ListView):
+    model = Question
+
+
+class QuestionDetail(LoginRequiredMixin, DetailView):
+    model = Question
+
+
+class QuestionCreate(LoginRequiredMixin, CreateView):
+    model = Question
+    fields = '__all__'
+
+
+class QuestionUpdate(LoginRequiredMixin, UpdateView):
+    model = Question
+    fields = '__all__'
+
+
+class QuestionDelete(LoginRequiredMixin, DeleteView):
+    model = Question
+    success_url = '/Question/'
+
+
+
 
 
 #============================================= Inserting a photo ===================================================#
 
-def add_photo(request, cat_id):
-    photo_file = request.FILES.get('photo-file', None)
-    if photo_file:
-        s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + \
-            photo_file.name[photo_file.name.rfind('.'):]
-        try:
-            s3.upload_fileobj(photo_file, BUCKET, key)
-            url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            Photo.objects.create(url=url, flashcar_id=flashcard_id)
-        except:
-            print('An error accoured uploading file to S3')
-    return redirect('detail', flashcard_id=flashcard_id)
+# def add_photo(request, cat_id):
+#     photo_file = request.FILES.get('photo-file', None)
+#     if photo_file:
+#         s3 = boto3.client('s3')
+#         key = uuid.uuid4().hex[:6] + \
+#             photo_file.name[photo_file.name.rfind('.'):]
+#         try:
+#             s3.upload_fileobj(photo_file, BUCKET, key)
+#             url = f"{S3_BASE_URL}{BUCKET}/{key}"
+#             Photo.objects.create(url=url, flashcard_id=flashcard_id)
+#         except:
+#             print('An error accoured uploading file to S3')
+#     return redirect('detail', flashcard_id=flashcard_id)
 
 #=======================oooo=======================================================================#
