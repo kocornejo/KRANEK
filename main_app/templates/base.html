@@ -18,7 +18,11 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Kraniak</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'decks_create' %}">Add a Deck</a></li>
+          <li><a href="{% url 'index' %}">View All My Decks</a></li>
+          <li><a href="{% url 'flashcards_create' %}">Add a Flashcard</a></li>
+          <li><a href="{% url 'flashcards_index' %}">View All Flashcards</a></li>
         </ul>
       </div>
     </nav>
