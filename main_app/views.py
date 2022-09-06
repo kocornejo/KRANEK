@@ -237,7 +237,7 @@ def add_photo(request, cat_id):
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
             url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            Photo.objects.create(url=url, flashcar_id=flashcard_id)
+            Photo.objects.create(url=url, flashcard_id=flashcard_id)
         except:
             print('An error accoured uploading file to S3')
     return redirect('detail', flashcard_id=flashcard_id)
