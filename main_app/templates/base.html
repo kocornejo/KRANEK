@@ -23,7 +23,10 @@
         <ul class="right">
           <li><a href="/about">About</a></li>
           {% if user.is_authenticated %}
-          <li><a href="/flashcard/detail">My Flashcards</a></li>
+          <li><a href="{% url 'decks_create' %}">Add a Deck</a></li>
+          <li><a href="{% url 'index' %}">View All My Decks</a></li>
+          <li><a href="{% url 'flashcards_create' %}">Add a Flashcard</a></li>
+          <li><a href="{% url 'flashcards_index' %}">View All Flashcards</a></li>
           <li><a href="/quiz/detail">My Quizzes</a></li>
           <li><a href=""></a></li>
           {% else %}
