@@ -1,4 +1,5 @@
 
+
 class Quiz(models.Model):
     title = models.CharField(max_length=100)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)

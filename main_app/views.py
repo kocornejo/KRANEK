@@ -1,5 +1,7 @@
+
 from .models import Profile, Quiz, Question
 from .forms import QuizForm, QuestionForm
+
 
 
 
@@ -29,12 +31,7 @@ def quizUpdate(request, UpdateView):
     fields = ['title']
 #Use this if above doesnt work
 def quiz_update(request, profile_id):
-    form = QuizForm(request.POST)
-    if form.is_valid():
-        new_quiz = form.save(commit=False)
-        new_quiz.profile_id = profile_id
-        new_quiz.save()
-    return redirect('detail', profile_id=profile_id)
+
 
 @login_required
 def quizDelete(request, DeleteView):
