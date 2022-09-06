@@ -1,7 +1,8 @@
-from django.contrib import admin
-# import your models here
-from .models import Deck, Flashcard
+# from django.contrib import admin
 
-# Register your models here
-admin.site.register(Deck)
-admin.site.register(Flashcard)
+# Registering the models
+# from .models import #Flashcard, Photo, Quiz
+
+# admin.site.register(Flashcard)
+# admin.site.register(Quiz)
+# admin.site.register(Photo)

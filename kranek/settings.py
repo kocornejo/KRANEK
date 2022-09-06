@@ -76,8 +76,8 @@ WSGI_APPLICATION = 'kranek.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kranek',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'kranek', # It might be all caps KRANEK
     }
 }
 
@@ -116,7 +116,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+# Add this variable to specify where successful logins should redirect to
+LOGIN_REDIRECT_URL = '/home/'    # change this to whatever we call the main home page
+# Add this variable to specify where logging out redirects to
+LOGOUT_REDIRECT_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
