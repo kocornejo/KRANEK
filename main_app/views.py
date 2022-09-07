@@ -10,7 +10,7 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import Deck, Flashcard, Quiz, Question
-from .forms import QuestionForm
+from .forms import QuestionForm, QuizForm
 
 
 import uuid
@@ -25,6 +25,8 @@ S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 BUCKET = 'kranek'
 
 #============================================= Adding the Signup form ===================================================#
+
+
 
 
 def signup(request):
@@ -150,7 +152,6 @@ class FlashcardDelete(DeleteView):
 
 #========================================== My quizzes view ======================================================#
 
-
 class QuizCreate(CreateView):
     model = Quiz
     fields = ['title']
@@ -159,6 +160,13 @@ class QuizCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+@login_required
+def quiz_detail(request, quiz_id):
+    quiz = Quiz.objects.get(id=quiz_id)
+    question_form = QuestionForm
+    questions = Question.objects.exclude(
+        id__in=quiz.questions.all().values_list('id'))
+    return render(request, 'quiz/detail.html', {'quiz': quiz, 'question_form': question_form, 'questions':questions})
 
 @login_required
 def quiz_detail(request, quiz_id):
@@ -183,15 +191,24 @@ def quiz_index(request):
 
 
 @login_required
+def add_question(request, quiz_id):
+    form = QuestionForm(request.POST)
+    if form.is_valid():
+        new_question = form.save(commit=False)
+        new_question.quiz_id = quiz_id
+        new_question.save()
+    return redirect('quiz_detail', quiz_id=quiz_id)
+
+@login_required
 def assoc_question(request, quiz_id, question_id):
-    Quiz.objects.get(id=quiz_id).question.add(question_id)
-    return redirect('detail', quiz_id=quiz_id)
+    Quiz.objects.get(id=quiz_id).questions.add(question_id)
+    return redirect('quiz_detail', quiz_id=quiz_id)
 
 
 @login_required
 def unassoc_question(request, quiz_id, question_id):
-    Quiz.objects.get(id=quiz_id).question.remove(question_id)
-    return redirect('detail', quiz_id=quiz_id)
+    Quiz.objects.get(id=quiz_id).questions.remove(question_id)
+    return redirect('quiz_detail', quiz_id=quiz_id)
 
 
 class QuestionList(LoginRequiredMixin, ListView):
@@ -214,7 +231,9 @@ class QuestionUpdate(LoginRequiredMixin, UpdateView):
 
 class QuestionDelete(LoginRequiredMixin, DeleteView):
     model = Question
-    success_url = '/Question/'
+
+    success_url = '/questions/'
+
 
 
 #============================================= Inserting a photo ===================================================#

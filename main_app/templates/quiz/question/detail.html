@@ -10,10 +10,12 @@
             </span>
           </div>
           <div class="card-action">
-            <form action="{% url 'assoc_question' quiz.id questionid %}" method="post">
+            <form action="{% url 'assoc_question' quiz.id question.id %}" method="post">
                 {% csrf_token %}
               <button type="submit" class="btn">Add</button>
             </form>
           </div>
         </div>
       {% endfor %}
+</div>
+
