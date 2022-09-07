@@ -41,14 +41,19 @@ class Quiz(models.Model):
     def _str_(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'quiz_id': self.id})
+
 
 class Question(models.Model):
     question = models.CharField(max_length=250)
     answer = models.TextField(max_length=250)
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
 
-    def str(self):
-        return f"{self.get_question_display()} on {self.date}"
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('question_detail', kwargs={'pk': self.id})
 # class Photo(models.Model):
 #     url = models.CharField(max_length=200)
 #     flashcard = models.ForeignKey(Card, on_delete=models.CASCADE)
