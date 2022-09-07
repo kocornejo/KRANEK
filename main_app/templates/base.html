@@ -27,7 +27,10 @@
           <li><a href="{% url 'index' %}">View All My Decks</a></li>
           <li><a href="{% url 'flashcards_create' %}">Add a Flashcard</a></li>
           <li><a href="{% url 'flashcards_index' %}">View All Flashcards</a></li>
-          <li><a href="/quiz/detail">My Quizzes</a></li>
+          <li><a href="/quiz/create">Add A Quiz</a></li>
+          <li><a href="{% url 'quiz_index' %}">My Quizzes</a></li>
+          <li><a href="{% url 'question_create' %}">Add A Question</a></li>
+          <li><a href="{% url 'question_index' %}">My Questions</a></li>
           <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
           <li><a href=""></a></li>
           {% else %}
