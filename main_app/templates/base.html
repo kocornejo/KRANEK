@@ -20,7 +20,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">Kraniak</a>
-      
+
       <div>
         <ul class="nav nav-pills justify-content-end">
           <li class="nav-item">
@@ -37,8 +37,8 @@
               <li><a class="dropdown-item" href="{% url 'flashcards_create' %}">Add a Flashcard</a></li>
               <li><a class="dropdown-item" href="{% url 'flashcards_index' %}">All Flashcards</a></li>
             </ul>
-            </li>
-            <li class="nav-item dropdown">
+          </li>
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
               aria-expanded="false">My Quizzes</a>
             <ul class="dropdown-menu">
@@ -47,23 +47,25 @@
               <li><a class="dropdown-item" href="{% url 'question_create' %}">Add A Question</a></li>
               <li><a class="dropdown-item" href="{% url 'question_index' %}">My Questions</a></li>
             </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                aria-expanded="false">My Profile</a>
-              <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a></li>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+              aria-expanded="false">My Profile</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a></li>
 
-          {% else %}
-          <li><button><a href="{% url 'signup' %}">Sign Up</a></button></li>
-          <li><button><a href="{% url 'login' %}">Log In</a></button></li>
-          {% endif %}
-        </ul>
+              {% else %}
+              <li><button><a href="{% url 'signup' %}">Sign Up</a></button></li>
+              <li><button><a href="{% url 'login' %}">Log In</a></button></li>
+              {% endif %}
+            </ul>
       </div>
     </nav>
   </header>
-  <video class="page-bg-desktop" data-src="https://d1wy21vtjs6qq7.cloudfront.net/storyworks/specials/the-ocean-a-place-of-awe-mystery-and-allure/videos/hero-d.mp4" 
-  muted="" loop="" autoplay="" playsinline="" src="https://d1wy21vtjs6qq7.cloudfront.net/storyworks/specials/the-ocean-a-place-of-awe-mystery-and-allure/videos/hero-d.mp4">
+  <video class="page-bg-desktop"
+    data-src="https://d1wy21vtjs6qq7.cloudfront.net/storyworks/specials/the-ocean-a-place-of-awe-mystery-and-allure/videos/hero-d.mp4"
+    muted="" loop="" autoplay="" playsinline=""
+    src="https://d1wy21vtjs6qq7.cloudfront.net/storyworks/specials/the-ocean-a-place-of-awe-mystery-and-allure/videos/hero-d.mp4">
   </video>
   <main class="container">
     {% block content %}

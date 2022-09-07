@@ -36,7 +36,17 @@
             <h3>Questions</h3>
             {% if questions.count %}
               {% for question in questions.all %}
-                <div class="card">
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <h2> {{ question.question }} </h2>
+                  </div>
+                  <div class="flip-card-back">
+                    <h2> {{ question.answer }} </h2>
+                  </div>
+                </div>
+              </div>
+                <!-- <div class="card">
                   <div class="card-content">
                     <span class="card-title">
                       {{ question.question }}
@@ -52,8 +62,8 @@
                 </div>
               {% endfor %}
             {% else %}
-              <h5>{{deck.name}} No Questions Avalable</h5>
-            {% endif %}
+              <h5>{{deck.name}} No Questions Available</h5>
+            {% endif %} -->
     </div>
 
 
