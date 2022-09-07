@@ -32,19 +32,6 @@ class Deck(models.Model):
         return reverse('detail', kwargs={'deck_id': self.id})
 
 # class Card(models.Model):
-
-
-class Quiz(models.Model):
-    title = models.CharField(max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def _str_(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('detail', kwargs={'quiz_id': self.id})
-
-
 class Question(models.Model):
     question = models.CharField(max_length=250)
     answer = models.TextField(max_length=250)
@@ -54,6 +41,21 @@ class Question(models.Model):
 
     def get_absolute_url(self):
         return reverse('question_detail', kwargs={'pk': self.id})
+
+class Quiz(models.Model):
+    title = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    questions = models.ManyToManyField(Question)
+
+
+    def _str_(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('quiz_detail', kwargs={'quiz_id': self.id})
+
+
+
 
     # def str(self):
     #     return f"{self.get_question_display()} on {self.date}"

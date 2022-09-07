@@ -163,7 +163,10 @@ class QuizCreate(CreateView):
 @login_required
 def quiz_detail(request, quiz_id):
     quiz = Quiz.objects.get(id=quiz_id)
-    return render(request, 'quiz/detail.html', {'quiz': quiz})
+    question_form = QuestionForm
+    questions = Question.objects.exclude(
+        id__in=quiz.questions.all().values_list('id'))
+    return render(request, 'quiz/detail.html', {'quiz': quiz, 'question_form': question_form, 'questions':questions})
 
 class QuizUpdate(LoginRequiredMixin, UpdateView):
     model = Quiz
@@ -180,17 +183,25 @@ def quiz_index(request):
     quiz = Quiz.objects.all()
     return render(request, 'quiz/index.html', {'quiz': quiz})
 
+@login_required
+def add_question(request, quiz_id):
+    form = QuestionForm(request.POST)
+    if form.is_valid():
+        new_question = form.save(commit=False)
+        new_question.quiz_id = quiz_id
+        new_question.save()
+    return redirect('quiz_detail', quiz_id=quiz_id)
 
 @login_required
 def assoc_question(request, quiz_id, question_id):
-    Quiz.objects.get(id=quiz_id).question.add(question_id)
-    return redirect('detail', quiz_id=quiz_id)
+    Quiz.objects.get(id=quiz_id).questions.add(question_id)
+    return redirect('quiz_detail', quiz_id=quiz_id)
 
 
 @login_required
 def unassoc_question(request, quiz_id, question_id):
-    Quiz.objects.get(id=quiz_id).question.remove(question_id)
-    return redirect('detail', quiz_id=quiz_id)
+    Quiz.objects.get(id=quiz_id).questions.remove(question_id)
+    return redirect('quiz_detail', quiz_id=quiz_id)
 
 
 class QuestionList(LoginRequiredMixin, ListView):

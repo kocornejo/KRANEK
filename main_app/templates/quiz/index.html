@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <h1>Quiz List</h1>
+
 {% for quiz in quiz %}
-  <a href="{% url 'quiz_detail' quiz.id %}">
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ quiz.title }}</span>
-        </div>
+  <div class="card">
+    <a href="{% url 'quiz_detail' quiz.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ quiz.title }}</span>
     </div>
-  </a>
+</a>
+  </div>
 {% endfor %}
+
 {% endblock %}
