@@ -168,10 +168,6 @@ def quiz_detail(request, quiz_id):
         id__in=quiz.questions.all().values_list('id'))
     return render(request, 'quiz/detail.html', {'quiz': quiz, 'question_form': question_form, 'questions':questions})
 
-@login_required
-def quiz_detail(request, quiz_id):
-    quiz = Quiz.objects.get(id=quiz_id)
-    return render(request, 'quiz/detail.html', {'quiz': quiz})
 
 
 class QuizUpdate(LoginRequiredMixin, UpdateView):
@@ -221,12 +217,12 @@ class QuestionDetail(LoginRequiredMixin, DetailView):
 
 class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
-    fields = '_all_'
+    fields = '__all__'
 
 
 class QuestionUpdate(LoginRequiredMixin, UpdateView):
     model = Question
-    fields = '_all_'
+    fields = '__all__'
 
 
 class QuestionDelete(LoginRequiredMixin, DeleteView):
