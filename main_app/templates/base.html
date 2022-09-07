@@ -8,31 +8,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Kraniak</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
 </head>
 
 <body>
-  <header class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper">
-        <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Kraniak</a></li>
-        </ul>
-        <ul class="right">
-          <li><a href="/about">About</a></li>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">Kraniak</a>
+      
+      <div>
+        <ul class="nav nav-pills justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/about">About</a>
+          </li>
           {% if user.is_authenticated %}
-          <li><a href="{% url 'decks_create' %}">Add a Deck</a></li>
-          <li><a href="{% url 'index' %}">View All My Decks</a></li>
-          <li><a href="{% url 'flashcards_create' %}">Add a Flashcard</a></li>
-          <li><a href="{% url 'flashcards_index' %}">View All Flashcards</a></li>
-          <li><a href="/quiz/create">Add A Quiz</a></li>
-          <li><a href="{% url 'quiz_index' %}">My Quizzes</a></li>
-          <li><a href="{% url 'question_create' %}">Add A Question</a></li>
-          <li><a href="{% url 'question_index' %}">My Questions</a></li>
-          <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
-          <li><a href=""></a></li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+              aria-expanded="false">My Decks</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'index' %}">My Decks</a></li>
+              <li><a class="dropdown-item" href="{% url 'decks_create' %}">Add a Deck</a></li>
+              <li><a class="dropdown-item" href="{% url 'flashcards_create' %}">Add a Flashcard</a></li>
+              <li><a class="dropdown-item" href="{% url 'flashcards_index' %}">All Flashcards</a></li>
+            </ul>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+              aria-expanded="false">My Quizzes</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/quiz/create">Add A Quiz</a></li>
+              <li><a class="dropdown-item" href="{% url 'quiz_index' %}">My Quizzes</a></li>
+              <li><a class="dropdown-item" href="{% url 'question_create' %}">Add A Question</a></li>
+              <li><a class="dropdown-item" href="{% url 'question_index' %}">My Questions</a></li>
+            </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false">My Profile</a>
+              <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a></li>
+
           {% else %}
           <li><button><a href="{% url 'signup' %}">Sign Up</a></button></li>
           <li><button><a href="{% url 'login' %}">Log In</a></button></li>
@@ -41,6 +62,9 @@
       </div>
     </nav>
   </header>
+  <video class="page-bg-desktop" data-src="https://d1wy21vtjs6qq7.cloudfront.net/storyworks/specials/the-ocean-a-place-of-awe-mystery-and-allure/videos/hero-d.mp4" 
+  muted="" loop="" autoplay="" playsinline="" src="https://d1wy21vtjs6qq7.cloudfront.net/storyworks/specials/the-ocean-a-place-of-awe-mystery-and-allure/videos/hero-d.mp4">
+  </video>
   <main class="container">
     {% block content %}
     {% endblock %}
@@ -48,5 +72,10 @@
   <footer class="page-footer">
     <div class="right">All Rights Reserved, &copy; 2022 Kraniak &nbsp;</div>
   </footer>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>

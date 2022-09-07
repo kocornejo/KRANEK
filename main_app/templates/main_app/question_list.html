@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <h1>Questions</h1>
-
 {% for question in question_list %}
   <a href="{% url 'question_detail' question.id %}">
     <div class="card">
@@ -13,5 +11,4 @@
     </div>
   </a>
 {% endfor %}
-
 {% endblock %}

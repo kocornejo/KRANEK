@@ -26,15 +26,19 @@ urlpatterns = [
     path('flashcards/<int:pk>/update/', views.FlashcardUpdate.as_view(), name='flashcards_update'),
     path('flashcards/<int:pk>/delete/', views.FlashcardDelete.as_view(), name='flashcards_delete'),
 
+
     path('quiz/create/', views.QuizCreate.as_view(), name='quiz_create'),
+
     path('quizzes/', views.quiz_index, name='quiz_index'),
     path('quiz/<int:quiz_id>/', views.quiz_detail, name='quiz_detail'),
     path('quiz/<int:pk>/update/', views.QuizUpdate.as_view(), name='quiz_update'),
     path('quiz/<int:pk>/delete/', views.QuizDelete.as_view(), name='quiz_delete'),
+
     path('quiz/<int:quiz_id>/add_question/', views.add_question, name='add_question'),
     
     path('quiz/<int:quiz_id>/assoc_question/<int:question_id>/', views.assoc_question, name='assoc_question'),
     path('quiz/<int:quiz_id>/unassoc_question/<int:question_id>/', views.unassoc_question, name='unassoc_question'),
+
 
     path('questions/create/', views.QuestionCreate.as_view(), name='question_create'),
     path('questions/', views.QuestionList.as_view(), name='question_index'),

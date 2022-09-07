@@ -168,6 +168,12 @@ def quiz_detail(request, quiz_id):
         id__in=quiz.questions.all().values_list('id'))
     return render(request, 'quiz/detail.html', {'quiz': quiz, 'question_form': question_form, 'questions':questions})
 
+@login_required
+def quiz_detail(request, quiz_id):
+    quiz = Quiz.objects.get(id=quiz_id)
+    return render(request, 'quiz/detail.html', {'quiz': quiz})
+
+
 class QuizUpdate(LoginRequiredMixin, UpdateView):
     model = Quiz
     fields = ['title']
@@ -182,6 +188,7 @@ class QuizDelete(LoginRequiredMixin, DeleteView):
 def quiz_index(request):
     quiz = Quiz.objects.all()
     return render(request, 'quiz/index.html', {'quiz': quiz})
+
 
 @login_required
 def add_question(request, quiz_id):
@@ -214,17 +221,19 @@ class QuestionDetail(LoginRequiredMixin, DetailView):
 
 class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
-    fields = '__all__'
+    fields = '_all_'
 
 
 class QuestionUpdate(LoginRequiredMixin, UpdateView):
     model = Question
-    fields = '__all__'
+    fields = '_all_'
 
 
 class QuestionDelete(LoginRequiredMixin, DeleteView):
     model = Question
+
     success_url = '/questions/'
+
 
 
 #============================================= Inserting a photo ===================================================#

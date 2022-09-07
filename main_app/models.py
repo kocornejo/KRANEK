@@ -52,14 +52,13 @@ class Quiz(models.Model):
         return self.name
 
     def get_absolute_url(self):
+
         return reverse('quiz_detail', kwargs={'quiz_id': self.id})
 
 
 
 
-    # def str(self):
-    #     return f"{self.get_question_display()} on {self.date}"
-
+   
 # class Photo(models.Model):
 #     url = models.CharField(max_length=200)
 #     flashcard = models.ForeignKey(Card, on_delete=models.CASCADE)
