@@ -90,6 +90,7 @@ def about(request):
 
 #============================================ My flashcard view ====================================================#
 
+
 @login_required
 # Add new view
 def decks_index(request):
@@ -146,10 +147,11 @@ class FlashcardUpdate(UpdateView):
 class FlashcardDelete(DeleteView):
     model = Flashcard
     success_url = '/flashcards/'
-    
+
 #========================================== My quizzes view ======================================================#
 
-class QuizCreate(LoginRequiredMixin, CreateView):
+
+class QuizCreate(CreateView):
     model = Quiz
     fields = ['title']
 
@@ -158,36 +160,26 @@ class QuizCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+@login_required
+def quiz_detail(request, quiz_id):
+    quiz = Quiz.objects.get(id=quiz_id)
+    return render(request, 'quiz/detail.html', {'quiz': quiz})
+
+
 class QuizUpdate(LoginRequiredMixin, UpdateView):
     model = Quiz
-    fields = '__all__'
+    fields = ['title']
 
 
 class QuizDelete(LoginRequiredMixin, DeleteView):
     model = Quiz
-    success_url = '/quiz/'
+    success_url = '/quizzes/'
 
 
 @login_required
 def quiz_index(request):
-    quiz = quiz.objects.all()
+    quiz = Quiz.objects.all()
     return render(request, 'quiz/index.html', {'quiz': quiz})
-
-
-@login_required
-def quiz_detail(request, quiz_id):
-    quiz = Quiz.objects.get(id=quiz_id)
-    return render(request, 'quiz/detail.html', {'quiz: quiz'})
-
-
-@login_required
-def add_question(request, quiz_id):
-    form = QuestionForm(request.POST)
-    if form.is_valid():
-        new_question = form.save(commit=False)
-        new_question.quiz_id = quiz_id
-        new_question.save()
-    return redirect('detail', quiz_id=quiz_id)
 
 
 @login_required
@@ -212,20 +204,17 @@ class QuestionDetail(LoginRequiredMixin, DetailView):
 
 class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
-    fields = '__all__'
+    fields = '_all_'
 
 
 class QuestionUpdate(LoginRequiredMixin, UpdateView):
     model = Question
-    fields = '__all__'
+    fields = '_all_'
 
 
 class QuestionDelete(LoginRequiredMixin, DeleteView):
     model = Question
     success_url = '/Question/'
-
-
-
 
 
 #============================================= Inserting a photo ===================================================#
