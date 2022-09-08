@@ -34,7 +34,7 @@ class Deck(models.Model):
 # class Card(models.Model):
 class Question(models.Model):
     question = models.CharField(max_length=250)
-    answer = models.TextField(max_length=250)
+    answer = models.CharField(max_length=250)
     
     def __str__(self):
         return self.name

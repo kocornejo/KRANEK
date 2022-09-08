@@ -62,7 +62,7 @@ def signup(request):
 
 
 def home(request):
-    return HttpResponse('<h1>༼ つ ◕_◕ ༽つ SUMMON THE KRAKEN ༼ つ ◕_◕ ༽つ</h1>')
+    return render(request, 'home.html')
 
 
 def about(request):
@@ -154,7 +154,7 @@ class QuizUpdate(LoginRequiredMixin, UpdateView):
 
 class QuizDelete(LoginRequiredMixin, DeleteView):
     model = Quiz
-    success_url = '/quizzes/'
+    success_url = '/quiz/'
 
 
 @login_required
