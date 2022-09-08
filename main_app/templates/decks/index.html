@@ -9,12 +9,12 @@
   <div class="card">
     <a href="{% url 'detail' deck.id %}">
     <div class="card-content">
-      <span class="card-title">{{ deck.name }}</span>
+      <span class="card-title ">{{ deck.name }}</span>
       <p>Subject: {{ deck.subject }}</p>
     </div>
 </a>
   </div>
-  </div>
+  
 {% endfor %}
-
+</div>
 {% endblock %}

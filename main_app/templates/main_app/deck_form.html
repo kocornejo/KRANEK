@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if object %}
 <div class="deck-form">
+{% if object %}
 
     <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
   {% else %}
@@ -13,7 +13,7 @@
     <table>
       {{ form.as_table }}
     </table>
-    <input type="submit" value="Submit!" class="btn">
+    <input type="submit" value="Submit!" class="btn btn-info">
   </form>
   
   </div>

@@ -17,6 +17,7 @@
         </div>
     </div>
 
+    <!-- Flashcard added -->
     <hr>
     <div class="row">
         <div class="col s6">
@@ -35,6 +36,7 @@
             <h5>No Flashcards</h5>
             {% endif %}
         </div>
+        <!-- Available Decks -->
         <div class="col s6">
             <h3>Available Flashcards</h3>
             {% if flashcards.count %}
@@ -48,7 +50,7 @@
                   <div class="card-action">
                     <form action="{% url 'assoc_flashcard' deck.id flashcard.id %}" method="post">
                         {% csrf_token %}
-                      <button type="submit" class="btn">Add</button>
+                      <button type="submit" class="btn btn-info">Add</button>
                     </form>
                   </div>
                 </div>
@@ -57,7 +59,7 @@
               <h5>{{deck.name}} Already Has All Flashcards Available</h5>
             {% endif %}
     </div>
-    </div>
-
+  </div>
 
     {% endblock %}
+  

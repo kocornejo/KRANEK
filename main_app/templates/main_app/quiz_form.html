@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+  <div class="quiz-form">
     {% if object %}
-
-    <div class="quiz-form">
 
     <h1>Edit <span class='teal-text'>{{object.title}}</span></h1>
     {% else %}
@@ -13,7 +12,7 @@
     <table>
       {{ form.as_table }}
     </table>
-    <input type="submit" value="Submit" class="btn">
+    <input type="submit" value="Submit" class="btn btn-info">
   </form>
 
   </div>
