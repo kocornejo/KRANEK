@@ -18,8 +18,11 @@
 <body>
 
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">Kraniak</a>
+    <nav class="navbar navbar-expand-auto" style="background-color: #DAEAFF; opacity: .9;">
+      <a class="navbar-brand" href="/about">
+        <img src="https://i.imgur.com/4FiYoVt.png?1" alt="logo" width="45" height="48"
+          class="d-inline-block align-text-center"> Kraniak
+      </a>
 
       <div>
         <ul class="nav nav-pills justify-content-end">
@@ -48,17 +51,16 @@
               <li><a class="dropdown-item" href="{% url 'question_index' %}">My Questions</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-              aria-expanded="false">My Profile</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a></li>
+          <li class="nav-item"><button class="btn btn-info">
+            <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+          </button>
+          </li>
 
-              {% else %}
-              <li><button><a href="{% url 'signup' %}">Sign Up</a></button></li>
-              <li><button><a href="{% url 'login' %}">Log In</a></button></li>
-              {% endif %}
-            </ul>
+          {% else %}
+          <li><button class="btn btn-info"><a class="text-decoration-none" href="{% url 'signup' %}">Sign Up</a></button></li>
+          <li><button class="btn btn-info"><a class="text-decoration-none" href="{% url 'login' %}">Log In</a></button></li>
+          {% endif %}
+        </ul>
       </div>
     </nav>
   </header>

@@ -1,71 +1,60 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Quiz Details</h1>
+<div class="quiz-details">
 
-<div class="card">
+  <h1>Quiz Details</h1>
+
+  <div class="card">
     <div class="card-content">
-        <div class="card-content">
-            <span class="card-title">{{ quiz.title }}</span>
-        </div>
-        <div class="card-action">
-            <a href="{% url 'quiz_update' quiz.id %}">Edit</a>
-            <a href="{% url 'quiz_delete' quiz.id %}">Delete</a>
-        </div>
+      <div class="card-content">
+        <span class="card-title">{{ quiz.title }}</span>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'quiz_update' quiz.id %}">Edit</a>
+        <a href="{% url 'quiz_delete' quiz.id %}">Delete</a>
+      </div>
     </div>
 
     <hr>
     <div class="row">
-        <div class="col s6">
-            <h3>{{ quiz.title }}'s Questions</h3>
-            {% if quiz.questions.count %}
-            {% for question in quiz.questions.all %}
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title">
-                         {{ question.question }}
-                    </span>
-                </div>
-            </div>
-            {% endfor %}
-            {% else %}
-            <h5>No Questions</h5>
-            {% endif %}
+      <div class="col s6">
+        <h3>{{ quiz.title }}'s Questions</h3>
+        {% if quiz.questions.count %}
+        {% for question in quiz.questions.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              {{ question.question }}
+            </span>
+          </div>
         </div>
-        <div class="col s6">
-            <h3>Questions</h3>
-            {% if questions.count %}
-              {% for question in questions.all %}
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <h2> {{ question.question }} </h2>
-                  </div>
-                  <div class="flip-card-back">
-                    <h2> {{ question.answer }} </h2>
-                  </div>
-                </div>
-              </div>
-                <!-- <div class="card">
-                  <div class="card-content">
-                    <span class="card-title">
-                      {{ question.question }}
-                      {{ question.answer }}
-                    </span>
-                  </div>
-                  <div class="card-action">
-                    <form action="{% url 'assoc_question' quiz.id question.id %}" method="post">
-                        {% csrf_token %}
-                      <button type="submit" class="btn">Add</button>
-                    </form>
-                  </div>
-                </div>
-              {% endfor %}
-            {% else %}
-              <h5>{{deck.name}} No Questions Available</h5>
-            {% endif %} -->
+        {% endfor %}
+        {% else %}
+        <h5>No Questions</h5>
+        {% endif %}
+      </div>
+      <div class="col s6">
+        <h3>Questions</h3>
+        {% if questions.count %}
+        {% for question in questions.all %}
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h2> {{ question.question }} </h2>
+            </div>
+            <div class="flip-card-back">
+              <h2> {{ question.answer }} </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <h5>{{quiz.name}} Already Has All Questions Available</h5>
+      {% endif %}
+
     </div>
 
 
     {% endblock %}
-

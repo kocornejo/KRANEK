@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<div class="delete-quiz">
+
   <h1>Delete Quiz</h1>
   <h4>Are you sure you want to delete <span class="teal-text">{{ object.title }}</span>?</h4>
   <form action="" method="POST">
@@ -7,4 +10,6 @@
     <input type="submit" value="Yes - Delete!" class="btn">
     <a href="{% url 'question_detail' quiz.id %}">Cancel</a>
   </form>
+
+  </div>
 {% endblock %}
