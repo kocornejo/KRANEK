@@ -2,6 +2,9 @@
 
 {% block content %}
   {% if object %}
+
+  <div class="flashcard-form">
+    
     <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
   {% else %}
     <h1>Add Flashcard</h1>
@@ -13,4 +16,6 @@
     </table>
     <input type="submit" value="Submit!" class="btn">
   </form>
+
+  </div>
 {% endblock %}

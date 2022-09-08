@@ -24,17 +24,464 @@ body {
   bottom: 0;
   z-index: -1;
   }
- 
 
-.card {
-  position: absolute;
-  color: white;
-  font-family: Trebuchet MS;
-  font-weight: bold;
+.signup {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 6%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
   text-align: center;
-  font-size: 6rem;
-  margin-top: 30vh; 
+  box-shadow: 2px 2px 4px black;
 }
+
+.login {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+nav {
+  margin: 10px 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px black;
+}
+
+.nav-item {
+  margin-right: 8px;
+}
+
+.navbar-brand {
+  margin-left: 8px;
+}
+
+.btn {
+  margin-right: 8px;
+}
+
+.h1-title {
+  position: relative;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 12%;
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.h2-title {
+  position: relative;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 10%;
+  font-weight: 400;
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.deck-details {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.deck-list {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.delete-deck {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.deck-form {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.delete-flashcard {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.flashcard-detail {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.flashcard-form {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.flashcard-list {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.delete-question {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.question-detail {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.question-form {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.question-list {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.delete-quiz {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.quiz-form {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.quiz-list {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+.quiz-details {
+  opacity: .9;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  background-clip: border-box;
+  border: 2px solid black;
+  border-radius: 15px;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 30px;
+  background-color: #DAEAFF;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+}
+
+
+
+
+/* KeiLee */
 
 .flip-card {
   background-color: transparent;

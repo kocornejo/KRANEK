@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="quiz-list">
+
 <h1>Quiz List</h1>
 
 {% for quiz in quiz %}
@@ -10,6 +12,8 @@
       <span class="card-title">{{ quiz.title }}</span>
     </div>
 </a>
+  </div>
+
   </div>
 {% endfor %}
 

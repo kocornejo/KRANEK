@@ -55,28 +55,6 @@ def signup(request):
 
 #========================================== Create a user profile after sign-up ======================================================#
 
-# class AddProfilePageView(generic, CreateView):
-#     form_class = AddProfilePageView
-#     template_name = 'registration/add_profile.html'
-#     success_url: redirect('home')
-
-
-# class EditProfilePageView(generic.UpdateView):
-#     form_class = EditProfilePageView
-#     template_name = 'registration/edit_profile.html'
-#     success_url: redirect('home')
-
-#     def get_object(self):
-#         return self.request.user
-
-
-# class EditProfilePageView(generic.UpdateView):
-
-
-# class ShowProfilePageView(DetailView):
-
-
-# class DeleteProfilePageView(DeleteView):
 
     #========================================== Main home page ======================================================#
 
@@ -115,7 +93,6 @@ def assoc_flashcard(request, deck_id, flashcard_id):
 class DeckCreate(CreateView):
     model = Deck
     fields = ['name', 'subject']
-    success_url = ['/decks/']
 
 
 class DeckUpdate(UpdateView):

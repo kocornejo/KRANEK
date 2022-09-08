@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     {% if object %}
+
+    <div class="quiz-form">
+
     <h1>Edit <span class='teal-text'>{{object.title}}</span></h1>
     {% else %}
         <h1>Add A Quiz</h1>
@@ -12,4 +15,6 @@
     </table>
     <input type="submit" value="Submit" class="btn">
   </form>
+
+  </div>
 {% endblock %}
