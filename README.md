@@ -1,7 +1,8 @@
-<center><span style="font-size: 60px; font-family:Papyrus; color:dodgerblue; ">Kraniak </span></center>
- <center><img src="https://i.imgur.com/cx1gPJI.png"  width="300" height="300"></center>
+# <center><span style="font-size: 60px; font-family:Papyrus; color:dodgerblue; ">Kraniak </span></center>
+# <center><img src="https://i.imgur.com/cx1gPJI.png"  width="300" height="300"></center>
 
 # <span style="font-family:Papyrus; color:dodgerblue">What is Kraniak?</span>
+---
 
 Kraniak allows students and regular users to have a fun and simple way of studying material and content. Whatever subject or topic that may be.
 Kraniak will allow students and teachers to create study decks and
